@@ -50,3 +50,26 @@ kullanici2.cikisYap(); //Lexa çıkış yaptı.
 //Metot zincirleme örneği
 
 kullanici1.puanKazan().puanKazan().cikisYap();//Puanı 3 kez art arda arttırır.
+
+
+//"extend kullanici" diyerek, KUllanici sınıfının her şeyini miras alıyoruz.
+class Admin extends Kullanici{
+    //Admin'e özel yeni bir method ekliyoruz.
+
+    kullaniciSil(k){
+
+        console.log(`${this.ad} (Admin), ${k.ad} adlı kullanıcıyı sildi.`);
+
+    }
+}
+
+const admin1 = new Admin("Admin User", "admin@example.com");
+const kullanici3= new Kullanici("Silinecek Kişi", "silinecek@test.com");
+
+//admin, bir Kullanici olduğu için, "puanKazan" metoduna sahiptir.
+
+admin1.puanKazan();
+
+//Admin, kendi özel metodunu da kullanabilir.
+
+admin1.kullaniciSil(kullanici3);
