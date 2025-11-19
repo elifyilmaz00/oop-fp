@@ -111,3 +111,26 @@ const yeniKullanici2 = sehirDegistirImmutable(kullanici4, "Antalya");
 console.log("Immutable orijinal kullanıcı:", kullanici2); // Çıktı: ad: Maria, şehir: Bursa -> orijinal veri değişmedi
 console.log("Yeni oluşturulan kullanıcı:", yeniKullanici2); // Çıktı: ad: Maria, şehir: Antalya -> yeni veri oluşturuldu
 
+//SAF BİR FONKSİYON (PURE FUNCTION)
+//1. Aynı girdi her zaman aynı çıktıyı verir (topla(5,10) her zaman 15'tir.).
+//2. Kendi dışındaki hiçbir şeyi değiştirmez.
+
+const topla = (a,b) => a + b;
+
+//SAF OLMAYAN FONKSİYON (IMPURE FUNCTION)
+
+let genelToplam=0;
+
+function toplaVeGuncelle(sayi){
+
+    //1. Yan etkisi var: Kendi scope'u dışındaki "genelToplam" değişkenini değiştiriyor
+    genelToplam+= sayi;
+
+    //2. Aynı girdi (5) her seferinde farklı bir global duruma bağlı olarak farklı bir şey yapar
+
+    //3. Ekrana bir şey yazdırıyor bu da bir yan etkidir.
+
+    console.log(`Yeni genel toplam: ${genelToplam}`);   
+    return genelToplam;
+}
+
