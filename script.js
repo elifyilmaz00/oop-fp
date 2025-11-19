@@ -73,3 +73,41 @@ admin1.puanKazan();
 //Admin, kendi özel metodunu da kullanabilir.
 
 admin1.kullaniciSil(kullanici3);
+
+//IMMUTABILITY İHLALİ (KÖTÜ YÖNTEM)
+
+const kullanici4 = {
+    ad: "Alex",
+    sehir: "Ankara"
+};
+
+function sehirDegistirMutate(kullanici, yeniSehir){
+
+    //Orijinal nesne doğrudan değiştirilir, bu yüzden kötü bir yöntem
+
+    kullanici.sehir = yeniSehir;
+    return kullanici;
+}
+
+sehirDegistirMutate(kullanici4, "İzmir");
+console.log("Mutate edilmiş orijinal kullanıcı:", kullanici4); //Çıktı: ad: "Alex", sehir: "İzmir" -> orijinal veri değişti
+
+//IMMUTABILITY İÇİN UYGUN YÖNTEM (İYİ ÖRNEK)
+
+const kullanici5 ={
+    ad: "Maria",
+    sehir: "Bursa"
+};
+
+function sehirDegistirImmutable(kullanici, yeniSehir){
+
+    //Spread operatörü ile orijial kullanıcının bir kopyası oluşturulur ve sadece "şehir" özelliği güncellenir.
+
+    return{...kullanici, sehir: yeniSehir};
+}
+
+const yeniKullanici2 = sehirDegistirImmutable(kullanici4, "Antalya");
+
+console.log("Immutable orijinal kullanıcı:", kullanici2); // Çıktı: ad: Maria, şehir: Bursa -> orijinal veri değişmedi
+console.log("Yeni oluşturulan kullanıcı:", yeniKullanici2); // Çıktı: ad: Maria, şehir: Antalya -> yeni veri oluşturuldu
+
